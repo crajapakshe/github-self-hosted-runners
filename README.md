@@ -1,2 +1,1 @@
-# github-self-hosted-runners
-GitHub Self-Hosted Runners
+# GitHub Self-Hosted Runners
