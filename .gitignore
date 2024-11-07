@@ -128,3 +128,14 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+
+# Custom
+.github/workflows
+.github/workflows/*
+.github/workflows/**/*
+cloudbuild.yaml
+img/*
+k8s/*
+README.md.old
+cloudbuild/*
