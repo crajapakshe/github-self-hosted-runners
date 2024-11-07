@@ -74,10 +74,22 @@ RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/g
 RUN apt update 
 RUN apt install gh -y
 
+# Setting up the runner user
+RUN adduser --disabled-password --gecos "" --uid 1001 runner && \
+    usermod -aG sudo runner && \
+    usermod -aG docker runner && \
+    echo "%sudo   ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers && \
+    echo "Defaults env_keep += \"DEBIAN_FRONTEND\"" >> /etc/sudoers
+
+# Setting up /github workspace
+RUN mkdir -p /github && \
+    chown -R runner:runner /github
+
 # Install GH Runner
 ARG GH_RUNNER_VERSION=2.320.0
+ARG RUNNER_ARCH=arm64
 WORKDIR /runner
-RUN curl -o actions.tar.gz --location "https://github.com/actions/runner/releases/download/v${GH_RUNNER_VERSION}/actions-runner-linux-arm64-${GH_RUNNER_VERSION}.tar.gz" && \
+RUN curl -o actions.tar.gz -L "https://github.com/actions/runner/releases/download/v${GH_RUNNER_VERSION}/actions-runner-linux-${RUNNER_ARCH}-${GH_RUNNER_VERSION}.tar.gz" && \
     tar -zxf actions.tar.gz && \
     rm -f actions.tar.gz && \
     ./bin/installdependencies.sh
@@ -91,3 +103,4 @@ COPY entrypoint.sh .
 ENV RUNNER_ALLOW_RUNASROOT=1
 RUN chmod +x entrypoint.sh
 ENTRYPOINT ["/runner/entrypoint.sh"]
+USER runner
