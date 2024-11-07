@@ -1,0 +1,17 @@
+name: Hello World
+
+on:
+  workflow_call:
+
+jobs:
+
+  hello-world:
+    name: Hello World
+    runs-on: 
+      labels: ["self-hosted", "devops"]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Echo Hello World
+        run: echo "Hello, World!"
+

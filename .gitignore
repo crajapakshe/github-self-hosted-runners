@@ -131,9 +131,7 @@ dist
 
 
 # Custom
-.github/workflows
-.github/workflows/*
-.github/workflows/**/*
+.github/workflows-old
 cloudbuild.yaml
 img/*
 k8s/*
