@@ -29,10 +29,10 @@ jobs:
           echo "Active self-hosted runners:"
           cat runners.json
 
-      - name: Add online runners to GitHub step summary
+      - name: Add runner details to GitHub step summary
         run: |
-          echo "## Online Self-Hosted Runners" >> $GITHUB_STEP_SUMMARY
-          jq -r '.runners[] | select(.status == "online") | "- \(.name) (\(.os))"' runners.json >> $GITHUB_STEP_SUMMARY
+          echo "## Self-Hosted Runners" >> $GITHUB_STEP_SUMMARY
+          jq -r '.runners[] | "- ID: \(.id)\n  Name: \(.name)\n  OS: \(.os)\n  Status: \(.status)\n"' runners.json >> $GITHUB_STEP_SUMMARY
 
 
 
