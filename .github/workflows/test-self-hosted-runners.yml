@@ -5,7 +5,7 @@ on:
 
 permissions:
   actions: read
-  administration: read
+  contents: read
 
 jobs:
   get-runners:
