@@ -19,7 +19,7 @@ To create a GitHub self-hosted runner image, follow these steps:
     docker buildx build --build-arg GH_RUNNER_VERSION=2.320.0 --provenance=true --sbom=true -t crajapakshe429/github-self-hosted-runners -f runner/runner-devops.Dockerfile ./runner/
     ```
 
-2. **Publish the Docker Image**: Once the image is built, you can push it to a Docker registry so that it can be reused and deployed across different environments.
+2. **Publish the Docker Image**: Once the image is built, you can push it to a [Docker registry](https://hub.docker.com/r/crajapakshe429/github-self-hosted-runners) so that it can be reused and deployed across different environments.
     ```bash
     docker image push crajapakshe429/github-self-hosted-runners
     ```
