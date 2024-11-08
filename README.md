@@ -81,6 +81,6 @@ Go to your repository on GitHub and modify the runner to use `self-hosted` or th
 Since the workflow above is triggered manually, trigger it and wait for the job to build.
 
 ![runner info](./images/runner_info.png)
-![pod logs](./images/pods_logs.png)
+![pod logs](./images/pod_logs.png)
 ![completed job](./images/completed_job.png)
 _The Self-Hosted GitHub Runner is fully functional._
