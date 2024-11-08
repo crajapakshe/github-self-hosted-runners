@@ -59,7 +59,7 @@ When the runners are up and running, executing the [Get Active Self-Hosted Runne
 
 
 ## Step 3: Configure Workflow to use a Self-Hosted Runner
-Go to your repository on GitHub and modify the runner to use `self-hosted` or the `label` (_i.e. devops_) you indicated in the Runner Deployment manifest.
+Go to your repository on GitHub and modify the runner to use `self-hosted` or the `label` (e.g., `devops`) you specified in the Runner Deployment manifest. The [Test Runners](https://github.com/crajapakshe/github-self-hosted-runners/actions/workflows/test-self-hosted-runners.yml) action demonstrates how self-hosted runners can be used in GitHub workflows.
 
     name: Test Runners
 
