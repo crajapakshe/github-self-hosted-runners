@@ -29,7 +29,6 @@ To create a GitHub self-hosted runner image, follow these steps:
 
 To run the GitHub self-hosted runner image, use the following command or use [.env.example](./runner/.env.example) to create a `.env` file and execute `docker run --rm --name github-runners --env-file runner/.env crajapakshepbl/github-runners:latest`.
 
-    ```bash
     docker run --rm --name your_container_name \
            -e GITHUB_USER=your_github_user \
            -e REPO_OWNER=your_repo_owner \
@@ -40,7 +39,6 @@ To run the GitHub self-hosted runner image, use the following command or use [.e
            -e HOSTNAME=your_hostname \
            -e GITHUB_TOKEN=your_github_token \
            your_image_name
-    ```
 
 Replace the environment variables with your specific values:
 
@@ -58,6 +56,7 @@ When the runners are up and running, the terminal will display the following vie
 ## Step 3: Configure Workflow to use a Self-Hosted Runner
 Go to your repository on GitHub and modify the runner to use `self-hosted` or the `label` (_i.e. devops_) you indicated in the Runner Deployment manifest.
 
+    ```yml
     name: Test Self-Hosted Runners
 
     on:
@@ -70,3 +69,5 @@ Go to your repository on GitHub and modify the runner to use `self-hosted` or th
         steps:
           - name: Checkout repository
             uses: actions/checkout@v4
+    ```
+
