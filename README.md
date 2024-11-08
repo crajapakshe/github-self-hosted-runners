@@ -69,3 +69,10 @@ Go to your repository on GitHub and modify the runner to use `self-hosted` or th
           - name: Checkout repository
             uses: actions/checkout@v4
 
+Since the workflow above is triggered manually, trigger it and wait for the job to build.
+
+![runner triggered](./images/)
+![runner info](./images
+![pod logs](./images
+![completed job](./images)
+_The Self-Hosted GitHub Runner is fully functional._

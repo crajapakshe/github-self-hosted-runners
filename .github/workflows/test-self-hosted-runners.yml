@@ -13,20 +13,20 @@ jobs:
 
       - name: Get self-hosted runners
         id: get-runners
-        uses: actions/github-script@v5
+        uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const owner = context.repo.owner;
             const repo = context.repo.repo;
-            const runners = await github.actions.listSelfHostedRunnersForRepo({
+            const runners = await github.rest.actions.listSelfHostedRunnersForRepo({
               owner,
               repo
             });
-            return runners.data;
+            core.setOutput("runners", JSON.stringify(runners.data));
 
       - name: Display runners
         run: |
           echo "Self-hosted runners:"
-          echo "${{ steps.get-runners.outputs.result }}"
+          echo "${{ steps.get-runners.outputs.runners }}"
 
