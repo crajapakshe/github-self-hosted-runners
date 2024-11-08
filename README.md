@@ -11,7 +11,7 @@ This guide will walk you through the process of installing and configuring a Sel
 
 The following steps are taken to install a Self-Hosted GitHub Actions Runner on a Docker Desktop/Engine:
 
-## Step 1: Build Runner Image
+## Step 1: Build Runners Image
 To create a GitHub self-hosted runner image, follow these steps:
 
 1. **Build the Docker Image**: This step involves creating a Docker image for the GitHub runner using a specified Dockerfile. You can customize the GitHub runner version by setting the `GH_RUNNER_VERSION` build argument.
