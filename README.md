@@ -1,4 +1,7 @@
 # GitHub Self-Hosted Runners
+
+[![Get Active Self-Hosted Runners](https://github.com/crajapakshe/github-self-hosted-runners/actions/workflows/get-active-self-hosted-runners.yml/badge.svg)](https://github.com/crajapakshe/github-self-hosted-runners/actions/workflows/get-active-self-hosted-runners.yml) [![Test Runners](https://github.com/crajapakshe/github-self-hosted-runners/actions/workflows/test-self-hosted-runners.yml/badge.svg)](https://github.com/crajapakshe/github-self-hosted-runners/actions/workflows/test-self-hosted-runners.yml)
+
 This guide will walk you through the process of installing and configuring a Self-Hosted GitHub Actions Runner on a Docker Desktop.
 
 ### Prerequisites
@@ -50,29 +53,34 @@ Replace the environment variables with your specific values:
 - `HOSTNAME`: The hostname for the runner.
 - `your_image_name`: The name of the Docker image you built and published.
 
-When the runners are up and running, the terminal will display the following view, indicating that they are listening for jobs
+When the runners are up and running, executing the [Get Active Self-Hosted Runners](https://github.com/crajapakshe/github-self-hosted-runners/actions/workflows/get-active-self-hosted-runners.yml) action will provide a summary of active runners as shown below.
+
+![get active runners](./images/get_active_runners_summary.png)
 
 
 ## Step 3: Configure Workflow to use a Self-Hosted Runner
 Go to your repository on GitHub and modify the runner to use `self-hosted` or the `label` (_i.e. devops_) you indicated in the Runner Deployment manifest.
 
-    name: Test Self-Hosted Runners
+    name: Test Runners
 
     on:
       workflow_dispatch:
 
     jobs:
-      get-runners:
+      test-runner:
+        name: Hello Self-Hosted Runner
         runs-on: 
           labels: ["self-hosted", "devops"]
         steps:
-          - name: Checkout repository
+          - name: Checkout code
             uses: actions/checkout@v4
+          - name: Echo
+            run: echo "Hello Self-Hosted Runner!"
+    
 
 Since the workflow above is triggered manually, trigger it and wait for the job to build.
 
-![runner triggered](./images/)
-![runner info](./images
-![pod logs](./images
-![completed job](./images)
+![runner info](./images/runner_info.png)
+![pod logs](./images/pods_logs.png)
+![completed job](./images/completed_job.png)
 _The Self-Hosted GitHub Runner is fully functional._
