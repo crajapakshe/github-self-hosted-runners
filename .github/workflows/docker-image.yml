@@ -15,4 +15,4 @@ jobs:
       - uses: actions/checkout@v4
       
       - name: Build the Docker Test image
-        run: docker buildx build --build-arg GH_RUNNER_VERSION=2.320.0 --provenance=true --sbom=true --tag crajapakshe429/github-self-hosted-runners:latest --file runner/runner-devops.Dockerfile ./runner/
+        run: docker build --build-arg GH_RUNNER_VERSION=2.320.0 --tag crajapakshe429/github-self-hosted-runners:latest --file runner/runner-devops.Dockerfile ./runner/
