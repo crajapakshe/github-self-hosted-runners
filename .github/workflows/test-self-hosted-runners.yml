@@ -1,12 +1,15 @@
-name: Test Self-Hosted Runners
+name: Get Self-Hosted Runners
 
 on:
   workflow_dispatch:
 
+permissions:
+  actions: read
+  administration: read
+
 jobs:
   get-runners:
-    runs-on: 
-      labels: ["self-hosted", "devops"]
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4                   
