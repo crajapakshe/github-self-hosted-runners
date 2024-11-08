@@ -14,16 +14,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # - name: Install GitHub CLI
-      #   run: |
-      #     sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
-      #     sudo apt-add-repository https://cli.github.com/packages
-      #     sudo apt update
-      #     sudo apt install gh -y
-
-      # - name: Authenticate GitHub CLI
-      #   run: gh auth login --with-token <<< "${{ secrets.DEVOPS_PAT }}"
-
       - name: Get active self-hosted runners
         id: get-active-runners
         env:
@@ -39,16 +29,10 @@ jobs:
           echo "Active self-hosted runners:"
           cat runners.json
 
-      - name: Add runners to summary
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const fs = require('fs');
-            const runners = fs.readFileSync('runners.json', 'utf8');
-            github.rest.actions.createWorkflowRunAttempt({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              run_id: context.runId,
-              body: `## Active self-hosted runners\n\n\`\`\`json\n${runners}\n\`\`\``
-            });
+      - name: Add online runners to GitHub step summary
+        run: |
+          echo "## Online Self-Hosted Runners" >> $GITHUB_STEP_SUMMARY
+          jq -r '.runners[] | select(.status == "online") | "- \(.name) (\(.os))"' runners.json >> $GITHUB_STEP_SUMMARY
+
+
 
