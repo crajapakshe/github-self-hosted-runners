@@ -1,21 +1,24 @@
-name: Get Self-Hosted Runners
+name: Get Active Self-Hosted Runners
 
 on:
   workflow_dispatch:
 
+permissions:
+  actions: read
+  contents: read
+
 jobs:
-  get-runners:
-    runs-on: 
-      labels: ["self-hosted", "devops"]
+  get-active-runners:
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4                   
+        uses: actions/checkout@v4
 
-      - name: Get self-hosted runners
-        id: get-runners
+      - name: Get active self-hosted runners
+        id: get-active-runners
         uses: actions/github-script@v7
         with:
-          github-token: ${{ secrets.DEVOPS_PAT }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const owner = context.repo.owner;
             const repo = context.repo.repo;
@@ -23,10 +26,11 @@ jobs:
               owner,
               repo
             });
-            core.setOutput("runners", JSON.stringify(runners.data));
+            const activeRunners = runners.data.runners.filter(runner => runner.status === 'online');
+            core.setOutput("active-runners", JSON.stringify(activeRunners));
 
-      - name: Display runners
+      - name: Display active runners
         run: |
-          echo "Self-hosted runners:"
-          echo "${{ steps.get-runners.outputs.runners }}"
+          echo "Active self-hosted runners:"
+          echo "${{ steps.get-active-runners.outputs['active-runners'] }}"
 
