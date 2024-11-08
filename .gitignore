@@ -133,7 +133,6 @@ dist
 # Custom
 .github/workflows-old
 cloudbuild.yaml
-img/*
 k8s/*
 README.md.old
 cloudbuild/*

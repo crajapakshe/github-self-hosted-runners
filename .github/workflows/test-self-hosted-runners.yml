@@ -1,0 +1,32 @@
+name: Test Self-Hosted Runners
+
+on:
+  workflow_dispatch:
+
+jobs:
+  get-runners:
+    runs-on: 
+      labels: ["self-hosted", "devops"]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4                   
+
+      - name: Get self-hosted runners
+        id: get-runners
+        uses: actions/github-script@v5
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const runners = await github.actions.listSelfHostedRunnersForRepo({
+              owner,
+              repo
+            });
+            return runners.data;
+
+      - name: Display runners
+        run: |
+          echo "Self-hosted runners:"
+          echo "${{ steps.get-runners.outputs.result }}"
+
