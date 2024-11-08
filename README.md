@@ -70,6 +70,6 @@ Go to your repository on GitHub and modify the runner to use `self-hosted` or th
           labels: ["self-hosted", "devops"]
         steps:
           - name: Checkout repository
-            uses: actions/checkout@v4               
+            uses: actions/checkout@v4
     ```
 
