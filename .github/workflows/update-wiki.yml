@@ -23,6 +23,7 @@ jobs:
         run: |
           mkdir -p ./wiki
           cp README.md ./wiki/Home.md
+          cp -r images ./wiki
 
       - name: Push to Wiki
         run: |
