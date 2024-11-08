@@ -1,52 +1,17 @@
-name: Get Active Self-Hosted Runners
+name: Test Runners
 
 on:
   workflow_dispatch:
 
-permissions:
-  actions: read
-  contents: read
-
 jobs:
-  get-active-runners:
-    runs-on: ubuntu-latest
+
+  test-runner:
+    name: Hello Self-Hosted Runner
+    runs-on: 
+      labels: ["self-hosted", "devops"]
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
-
-      # - name: Install GitHub CLI
-      #   run: |
-      #     sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
-      #     sudo apt-add-repository https://cli.github.com/packages
-      #     sudo apt update
-      #     sudo apt install gh -y
-
-      - name: Authenticate GitHub CLI
-        run: gh auth login --with-token <<< "${{ secrets.DEVOPS_PAT }}"
-
-      - name: Get active self-hosted runners
-        id: get-active-runners
-        run: |
-          gh api -H "Accept: application/vnd.github+json" \
-                 -H "X-GitHub-Api-Version: 2022-11-28" \
-                 /repos/crajapakshe/github-self-hosted-runners/actions/runners > runners.json
-          cat runners.json
-
-      - name: Display active runners
-        run: |
-          echo "Active self-hosted runners:"
-          cat runners.json
-
-      - name: Add runners to summary
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const fs = require('fs');
-            const runners = fs.readFileSync('runners.json', 'utf8');
-            github.rest.actions.createWorkflowRunAttempt({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              run_id: context.runId,
-              body: `## Active self-hosted runners\n\n\`\`\`json\n${runners}\n\`\`\``
-            });
-
+      - name: Echo
+        run: echo "Hello Self-Hosted Runner!"
+    
