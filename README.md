@@ -17,7 +17,8 @@ To create a GitHub self-hosted runner image, follow these steps:
     ```bash
     docker buildx build --build-arg GH_RUNNER_VERSION=2.320.0 --provenance=true --sbom=true -t crajapakshe429/github-self-hosted-runners -f runner/runner-devops.Dockerfile --push ./runner/
     ```
-## Run Image
+## Validate Image run on Docker Desktop
+
 To run the GitHub self-hosted runner image, use the following command:
 
 ```bash
