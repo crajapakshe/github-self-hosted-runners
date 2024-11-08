@@ -58,7 +58,6 @@ When the runners are up and running, the terminal will display the following vie
 ## Step 3: Configure Workflow to use a Self-Hosted Runner
 Go to your repository on GitHub and modify the runner to use `self-hosted` or the `label` (_i.e. devops_) you indicated in the Runner Deployment manifest.
 
-    ```bash
     name: Test Self-Hosted Runners
 
     on:
@@ -71,5 +70,3 @@ Go to your repository on GitHub and modify the runner to use `self-hosted` or th
         steps:
           - name: Checkout repository
             uses: actions/checkout@v4
-    ```
-
