@@ -46,8 +46,6 @@ jobs:
         with:
           context: ./runner
           file: ./runner/runner-devops.Dockerfile
-          sbom: true
-          provenance: mode=max
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
