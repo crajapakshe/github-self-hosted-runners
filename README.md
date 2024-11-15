@@ -20,7 +20,7 @@ To get started with self-hosted runners, you'll need to download the runner appl
 
 
 ## Contributions
-We welcome contributions! Please visit our [Contributing Guide](https://github.com/crajapakshe/github-self-hosted-runners/blob/main/CONTRIBUTING.md) for more details on how to get started.
+Welcome contributions! Please visit [Contributing Guide](https://github.com/crajapakshe/github-self-hosted-runners/blob/main/CONTRIBUTING.md) for more details on how to get started.
 
 Thank you to all the contributors who have helped make this project better:
 
